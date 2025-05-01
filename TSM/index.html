@@ -57,23 +57,32 @@
 						</div>
 						
 					</section>
-					<script>
-					window.onload=function starttime(){
-					        time(h1,'2025/10/1');   
-					        ptimer = setTimeout(starttime,1000); 
-					}
-					    function time(obj,futimg){
-					        var nowtime = new Date().getTime(); 
-					        var futruetime =  new Date(futimg).getTime(); 
-					        var msec = nowtime-futruetime; 
-					        var time = (msec/1000);  
-					        var day = parseInt(time/86400); 
-					        var hour = parseInt(time/3600)-24*day;    
-					        var minute = parseInt(time%3600/60); 
-					        var second = parseInt(time%60); 
-					        obj.innerHTML="TSM已运行"+day+"天"+hour+"小时"+minute+"分"+second+"秒"+""
-					}
-					</script>
+<script>
+window.onload = function() {
+    var h1 = document.getElementById('timer');
+    function updateTimer() {
+        time(h1, '2025/10/1');
+    }
+    updateTimer(); // 立即执行一次
+    setInterval(updateTimer, 1000);
+}
+
+function time(obj, startDate) {
+    var now = new Date().getTime();
+    var start = new Date(startDate).getTime();
+    var elapsed = now - start;
+
+    var seconds = Math.floor(elapsed / 1000);
+    var days = Math.floor(seconds / 86400);
+    seconds -= days * 86400;
+    var hours = Math.floor(seconds / 3600);
+    seconds -= hours * 3600;
+    var minutes = Math.floor(seconds / 60);
+    seconds -= minutes * 60;
+
+    obj.innerHTML = `TSM已运行 ${days}天 ${hours}小时 ${minutes}分 ${seconds}秒`;
+}
+</script>
 
 				<!-- Main -->
 					<div id="main">
