@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>William的个人主页</title>
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+</head>
+<body>
+    <!-- 粒子背景 -->
+    <div id="particles-js"></div>
+
+    <!-- 鼠标光效小球 -->
+    <div id="cursor-light"></div>
+
+    <!-- 导航栏 -->
+    <nav>
+        <div class="container nav-container">
+            <a href="#" class="logo" id="typing-logo"></a>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="#about">关于我</a>
+                <a href="#contact">联系</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首页头部 -->
+    <header class="hero">
+        <div class="hero-inner">
+            <div class="avatar-wrapper">
+                <div class="avatar-border">
+                    <div class="avatar-inner">
+                        <img src="William1.jpg" alt="头像" class="profile-img" />
+                    </div>
+                </div>
+            </div>
+            <div class="intro-text">
+                <h1>William</h1>
+                <p>全栈开发者 · 创始人 · 技术管理</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- 关于我 -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2>关于我</h2>
+            <div class="about-grid">
+                <div class="card">
+                    <i class="fas fa-code"></i>
+                    <h3>技术栈</h3>
+                    <p>JavaScript · Python · Java · C++ · HTML · CSS</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>工作室</h3>
+                    <p>奇距工作室创始人</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-server"></i>
+                    <h3>服务器管理</h3>
+                    <p>TSM服务器技术管理</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我 -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2>联系我</h2>
+            <div class="contact-grid">
+                <div class="card">
+                    <i class="fa-solid fa-phone"></i>
+                    <h3>联系方式</h3>
+                    <div class="contact-info">
+                        <p>QQ: 2120732689</p>
+                        <p>邮箱: <a href="mailto:a1b1000@foxmail.com" class="email-link">a1b1000@foxmail.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 链接区块 -->
+    <div class="container link-section">
+        <div class="mod-banner">
+            <div class="mod-info">
+                <h2>更多William的界面</h2>
+                <p>你想找的其他都在这里！</p>
+                <a href="Bviedo/Bviedo.html" class="btn glass-btn">打开B站视频综合 →</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 William. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        // 打字机效果内容
+        const text = "William";
+        const logo = document.getElementById("typing-logo");
+        let index = 0;
+
+        function type() {
+            if (index <= text.length) {
+                logo.textContent = text.slice(0, index);
+                index++;
+                setTimeout(type, 200);
+            }
+        }
+        type();
+
+        function toggleMenu() {
+            const navLinks = document.getElementById("navLinks");
+            navLinks.classList.toggle("active");
+        }
+
+        // 初始化particles.js
+        particlesJS.load('particles-js', 'particles.json', function() {
+            console.log('particles.js loaded');
+        });
+
+        // 鼠标光效
+        const cursorLight = document.getElementById("cursor-light");
+        window.addEventListener("mousemove", e => {
+            cursorLight.style.top = e.clientY + "px";
+            cursorLight.style.left = e.clientX + "px";
+        });
+    </script>
+</body>
+</html>

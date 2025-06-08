@@ -1,0 +1,308 @@
+:root {
+    --primary-color: #2c3e50;
+    --accent-color: #3498db;
+    --light-bg: #0f2027; /* 替换为黑色背景 */
+    --bg-dark: #0f2027;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    background: #0f2027; /* 修改为黑色背景 */
+    position: relative;
+    z-index: 0;
+    color: #fff; /* 添加默认字体颜色 */
+}
+
+/* 粒子背景层 */
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: #0f2027;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 导航栏 */
+nav {
+    background: var(--primary-color);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 1.8rem;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    top: 1.2rem;
+    right: 1.5rem;
+    z-index: 1100;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.nav-links a:hover {
+    color: var(--accent-color);
+}
+
+/* logo美化 */
+.logo {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 1.8rem;
+    font-weight: bold;
+    background: linear-gradient(45deg, #00f0ff, #ff00ff, #00ff9c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    cursor: default;
+}
+
+/* 全屏首页 */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    color: white;
+    overflow: hidden;
+}
+
+.hero-inner {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    max-width: 1200px;
+    padding: 0 2rem;
+}
+
+.avatar-wrapper {
+    width: 250px;
+    height: 250px;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.avatar-border {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, #00f0ff, #ff00ff, #00ff9c, #00f0ff);
+    animation: spin 4s linear infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+.avatar-inner {
+    background: #0f2027;
+    border-radius: 50%;
+    padding: 10px;
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    user-select: none;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.intro-text h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.intro-text p {
+    font-size: 1.5rem;
+    color: #ccc;
+}
+
+/* 区块通用 */
+.section {
+    padding: 4rem 0;
+    background: #0f2027; /* 深色背景 */
+    color: #fff;
+}
+
+/* 关于我 改成同排 */
+.about-grid {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: #1a1a1a; /* 深色卡片背景 */
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+    transition: transform 0.3s;
+    text-align: center;
+    flex: 1;
+    min-width: 280px;
+    max-width: 380px;
+    color: #fff;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card i {
+    font-size: 2.4rem;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+}
+
+/* 联系方式 */
+.email-link {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.email-link:hover {
+    text-decoration: underline;
+}
+
+/* 按钮美化 */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s;
+    margin: 0.5rem 0.5rem 0 0;
+    cursor: pointer;
+    user-select: none;
+}
+
+.glass-btn {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.glass-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: #fff;
+}
+
+/* 链接区块 */
+.link-section .mod-banner {
+    background: var(--primary-color);
+    border-radius: 14px;
+    padding: 2rem;
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.link-section .mod-info h2 {
+    margin-bottom: 0.5rem;
+    font-weight: 800;
+}
+
+.link-section .mod-info p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: #eee;
+}
+
+/* 页脚 */
+footer {
+    text-align: center;
+    padding: 2rem 0;
+    background: #0f2027; /* 黑色页脚背景 */
+    color: #ccc;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background: var(--primary-color);
+        position: absolute;
+        top: 60px;
+        right: 1.5rem;
+        padding: 1rem 1.5rem;
+        border-radius: 10px;
+        min-width: 150px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .hero-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .avatar-wrapper {
+        width: 200px;
+        height: 200px;
+    }
+
+    .intro-text h1 {
+        font-size: 3rem;
+    }
+
+    .intro-text p {
+        font-size: 1.2rem;
+    }
+
+    .about-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+}
