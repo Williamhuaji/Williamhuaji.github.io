@@ -197,11 +197,37 @@
       z-index: 2;
     }
     
-    .video-player {
+    .video-thumb {
       width: 100%;
       aspect-ratio: 16 / 9;
-      border: none;
+      object-fit: cover;
+      display: block;
       background: #000;
+      position: relative;
+    }
+    
+    .play-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 24px;
+      transition: all 0.3s ease;
+      opacity: 0.8;
+    }
+    
+    .video-card:hover .play-icon {
+      transform: translate(-50%, -50%) scale(1.1);
+      opacity: 1;
+      background: rgba(88, 166, 255, 0.8);
     }
     
     .video-info {
@@ -371,6 +397,75 @@
       }
     }
     
+    /* 弹出层样式 */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .player-container {
+      width: 90%;
+      max-width: 900px;
+      position: relative;
+      aspect-ratio: 16/9;
+    }
+    
+    .player-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 30px rgba(88, 166, 255, 0.5);
+    }
+    
+    .bili-player {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: #000;
+    }
+    
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: rgba(40, 40, 40, 0.8);
+      border: none;
+      border-radius: 50%;
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+    
+    .close-btn:hover {
+      background: #58a6ff;
+      transform: rotate(90deg);
+    }
+    
     /* 响应式调整 */
     @media (max-width: 768px) {
       header h1 { 
@@ -404,6 +499,10 @@
       main {
         grid-template-columns: 1fr;
         gap: 25px;
+      }
+      
+      .player-container {
+        width: 95%;
       }
     }
     
@@ -439,6 +538,14 @@
         width: 40px;
         height: 40px;
         font-size: 1.2rem;
+      }
+      
+      .close-btn {
+        top: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
       }
     }
   </style>
@@ -483,17 +590,14 @@
 
   <main>
     <!-- 视频卡片1 -->
-    <div class="video-card">
-      <iframe class="video-player" 
-              src="//player.bilibili.com/player.html?isOutside=true&aid=114481883516787&bvid=BV16VVRzuEKZ&cid=29883763316&p=1" 
-              scrolling="no" 
-              border="0" 
-              frameborder="no" 
-              framespacing="0" 
-              allowfullscreen="true"></iframe>
+    <div class="video-card" data-video="//player.bilibili.com/player.html?isOutside=true&aid=114481883516787&bvid=BV16VVRzuEKZ&cid=29883763316&p=1">
+      <div class="video-thumb-container">
+        <img class="video-thumb" src="https://i0.hdslb.com/bfs/archive/58058b8dbd5801c946a02f013e88c7cdaf0e2f36.jpg@672w_378h_1c.webp" alt="视频封面1">
+        <div class="play-icon"><i class="fas fa-play"></i></div>
+      </div>
       <div class="video-info">
         <h3 class="video-title"><i class="fas fa-play-circle"></i> 510元的电脑能畅玩3A？</h3>
-        <p class="video-desc">510元畅玩3A？那肯定是真的啊，经过精心挑选的硬件组合，这台低成本电脑也能流畅运行热门3A游戏。</p>
+        <p class="video-desc">510元畅玩3A？那肯定是真的啊！本次配件均是咸鱼购买。William个人网站：ts1.top。William粉丝聊天群：874235655。TSM官网：ts1.top/TSM。TSM审核群：939511942</p>
         <div class="video-meta">
           <span><i class="fas fa-eye"></i> 516播放</span>
           <span><i class="fas fa-clock"></i> 2025-5-10</span>
@@ -502,17 +606,14 @@
     </div>
 
     <!-- 视频卡片2 -->
-    <div class="video-card">
-      <iframe class="video-player" 
-              src="//player.bilibili.com/player.html?isOutside=true&aid=114563890548693&bvid=BV1Qhj8zhEN9&cid=30133783425&p=1" 
-              scrolling="no" 
-              border="0" 
-              frameborder="no" 
-              framespacing="0" 
-              allowfullscreen="true"></iframe>
+    <div class="video-card" data-video="//player.bilibili.com/player.html?isOutside=true&aid=114563890548693&bvid=BV1Qhj8zhEN9&cid=30133783425&p=1">
+      <div class="video-thumb-container">
+        <img class="video-thumb" src="https://i2.hdslb.com/bfs/archive/c182c1922573df2f23ad180a090088572b62b567.jpg@672w_378h_1c.webp" alt="视频封面2">
+        <div class="play-icon"><i class="fas fa-play"></i></div>
+      </div>
       <div class="video-info">
         <h3 class="video-title"><i class="fas fa-play-circle"></i> 510元的电脑能畅玩3A？第二期</h3>
-        <p class="video-desc">第二期带来更多性能测试和优化方案，展示游戏体验。</p>
+        <p class="video-desc">510元的电脑能畅玩3A？第二期测试4款游戏和解答了大家的一些问题！欢迎抄作业！！！三连关注！！！</p>
         <div class="video-meta">
           <span><i class="fas fa-eye"></i> 793  播放</span>
           <span><i class="fas fa-clock"></i> 2025-05-25</span>
@@ -521,17 +622,14 @@
     </div>
 
     <!-- 视频卡片3 -->
-    <div class="video-card">
-      <iframe class="video-player" 
-              src="//player.bilibili.com/player.html?isOutside=true&aid=114603283449551&bvid=BV1fp7KzkEc5&cid=30253780676&p=1" 
-              scrolling="no" 
-              border="0" 
-              frameborder="no" 
-              framespacing="0" 
-              allowfullscreen="true"></iframe>
+    <div class="video-card" data-video="//player.bilibili.com/player.html?isOutside=true&aid=114603283449551&bvid=BV1fp7KzkEc5&cid=30253780676&p=1">
+      <div class="video-thumb-container">
+        <img class="video-thumb" src="https://i2.hdslb.com/bfs/archive/576f4d6a64e278d3716a8f9ae3531f8cca89b7a0.jpg@672w_378h_1c.webp" alt="视频封面3">
+        <div class="play-icon"><i class="fas fa-play"></i></div>
+      </div>
       <div class="video-info">
         <h3 class="video-title"><i class="fas fa-play-circle"></i> 苦厄难磨凌云志 不死终有出头日</h3>
-        <p class="video-desc">龙岗龙城公园</p>
+        <p class="video-desc">苦厄难磨凌云志 不死终有出头日。三连！龙岗龙城公园</p>
         <div class="video-meta">
           <span><i class="fas fa-eye"></i> 253播放</span>
           <span><i class="fas fa-clock"></i> 2025-06-01</span>
@@ -539,6 +637,18 @@
       </div>
     </div>
   </main>
+
+  <!-- 弹出层播放器 -->
+  <div class="overlay" id="playerOverlay">
+    <div class="player-container">
+      <button class="close-btn" id="closePlayerBtn">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="player-wrapper">
+        <iframe id="biliPlayer" class="bili-player" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+      </div>
+    </div>
+  </div>
 
   <footer>
     <div class="social-links">
@@ -604,6 +714,38 @@
         card.addEventListener('mouseleave', () => {
           card.style.zIndex = '1';
         });
+      });
+      
+      // 视频卡片点击事件处理
+      const playerOverlay = document.getElementById('playerOverlay');
+      const biliPlayer = document.getElementById('biliPlayer');
+      const closePlayerBtn = document.getElementById('closePlayerBtn');
+      
+      videoCards.forEach(card => {
+        card.addEventListener('click', () => {
+          const videoSrc = card.getAttribute('data-video');
+          if (videoSrc) {
+            biliPlayer.src = videoSrc;
+            playerOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+          }
+        });
+      });
+      
+      // 关闭播放器
+      closePlayerBtn.addEventListener('click', () => {
+        playerOverlay.classList.remove('active');
+        biliPlayer.src = '';
+        document.body.style.overflow = 'auto';
+      });
+      
+      // 点击遮罩背景关闭播放器
+      playerOverlay.addEventListener('click', (e) => {
+        if (e.target === playerOverlay) {
+          playerOverlay.classList.remove('active');
+          biliPlayer.src = '';
+          document.body.style.overflow = 'auto';
+        }
       });
     });
   </script>
