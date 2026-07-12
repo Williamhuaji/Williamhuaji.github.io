@@ -2,15 +2,15 @@
 
 该项目包含5个网站，你可以通过以下链接来访问
 
-1.[导航站](ts1.top/)
+[导航站](ts1.top/)
 
-2.[William的个人网站据](ts1.top/GR/index.html/)
+[William的个人网站据](ts1.top/GR/index.html/)
 
-3.[TSM服务器官网](ts1.top/TSM/index.html/)
+[TSM服务器官网](ts1.top/TSM/index.html/)
 
-4.[AdinTS的个人网站](adin.ts1.top/)
+[AdinTS的个人网站](adin.ts1.top/)
 
-5.[网站更新日志](ts1.top/GX/index.html)
+[网站更新日志](ts1.top/GX/index.html)
 
 ##Q&A
 
