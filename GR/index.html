@@ -4,17 +4,377 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>William的个人主页</title>
-<link rel="stylesheet" href="style.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+<style>
+    * {
+        box-sizing: border-box;
+    }
+    html {
+        scroll-behavior: smooth;
+    }
+    body {
+        background: #0a0e27;
+        color: #e0e0e0;
+        overflow-x: hidden;
+        margin: 0;
+    }
+    #particles-js {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        overflow: hidden;
+        pointer-events: none;
+    }
+    #particles-js::before {
+        content: '';
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        border-radius: 50%;
+        background: rgba(0, 212, 255, 0.6);
+        box-shadow: 
+            5vw 10vh 0 0 rgba(0, 212, 255, 0.5),
+            15vw 25vh 0 1px rgba(168, 85, 247, 0.4),
+            25vw 8vh 0 0 rgba(0, 212, 255, 0.5),
+            35vw 70vh 0 1px rgba(0, 212, 255, 0.3),
+            45vw 35vh 0 0 rgba(168, 85, 247, 0.5),
+            55vw 15vh 0 0 rgba(0, 212, 255, 0.4),
+            65vw 80vh 0 1px rgba(0, 212, 255, 0.3),
+            75vw 45vh 0 0 rgba(168, 85, 247, 0.4),
+            85vw 20vh 0 0 rgba(0, 212, 255, 0.5),
+            95vw 65vh 0 1px rgba(0, 212, 255, 0.3),
+            10vw 55vh 0 0 rgba(168, 85, 247, 0.5),
+            20vw 85vh 0 0 rgba(0, 212, 255, 0.4),
+            30vw 40vh 0 1px rgba(168, 85, 247, 0.3),
+            40vw 60vh 0 0 rgba(0, 212, 255, 0.4),
+            50vw 90vh 0 1px rgba(0, 212, 255, 0.3),
+            60vw 25vh 0 0 rgba(168, 85, 247, 0.4),
+            70vw 55vh 0 0 rgba(0, 212, 255, 0.5),
+            80vw 75vh 0 1px rgba(168, 85, 247, 0.3),
+            90vw 10vh 0 0 rgba(0, 212, 255, 0.4),
+            8vw 70vh 0 0 rgba(168, 85, 247, 0.4),
+            18vw 35vh 0 1px rgba(0, 212, 255, 0.3),
+            28vw 95vh 0 0 rgba(0, 212, 255, 0.4),
+            38vw 15vh 0 0 rgba(168, 85, 247, 0.3),
+            48vw 75vh 0 1px rgba(0, 212, 255, 0.4),
+            58vw 50vh 0 0 rgba(168, 85, 247, 0.5),
+            68vw 5vh 0 0 rgba(0, 212, 255, 0.3),
+            78vw 35vh 0 1px rgba(168, 85, 247, 0.4),
+            88vw 85vh 0 0 rgba(0, 212, 255, 0.4),
+            98vw 40vh 0 0 rgba(168, 85, 247, 0.3);
+        animation: float-particles 25s linear infinite;
+    }
+    @keyframes float-particles {
+        0% {
+            transform: translateY(0) translateX(0);
+            opacity: 0.8;
+        }
+        100% {
+            transform: translateY(-100vh) translateX(8vw);
+            opacity: 0.8;
+        }
+    }
+    .container, nav, .hero-inner, section, footer {
+        position: relative;
+        z-index: 2;
+    }
+    nav {
+        background: rgba(10, 14, 39, 0.7);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+    .logo {
+        background: linear-gradient(90deg, #00d4ff, #a855f7);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-weight: 700;
+        font-size: 1.25rem;
+        text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        text-decoration: none;
+    }
+    .nav-links a {
+        position: relative;
+        color: #b0b0ff;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        margin: 0 1rem;
+    }
+    .nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #00d4ff, #6366f1);
+        transition: width 0.3s ease;
+        box-shadow: 0 0 8px #00d4ff;
+    }
+    .nav-links a:hover {
+        color: #00d4ff;
+        text-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+    }
+    .nav-links a:hover::after {
+        width: 100%;
+    }
+    .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        padding-top: 70px;
+    }
+    .hero-inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+        width: 100%;
+        max-width: 1000px;
+        padding: 0 1.5rem;
+    }
+    .avatar-wrapper {
+        flex-shrink: 0;
+        line-height: 0;
+    }
+    .avatar-border {
+        width: 188px;
+        height: 188px;
+        border-radius: 50%;
+        padding: 4px;
+        background: linear-gradient(135deg, #00d4ff, #6366f1, #a855f7);
+        box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+        display: block;
+    }
+    .avatar-inner {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+    .profile-img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        display: block;
+    }
+    .intro-text {
+        text-align: left;
+    }
+    .intro-text h1 {
+        background: linear-gradient(90deg, #ffffff, #00d4ff, #a855f7);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-size: 3rem;
+        text-shadow: 0 0 40px rgba(0, 212, 255, 0.3);
+        margin: 0 0 0.5rem;
+        line-height: 1.2;
+    }
+    .intro-text p {
+        color: #94a3b8;
+        letter-spacing: 3px;
+        font-size: 1.1rem;
+        margin: 0;
+        line-height: 1.5;
+    }
+    .section {
+        padding: 5rem 0;
+    }
+    .section h2 {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 2.5rem;
+        color: #ffffff;
+        position: relative;
+    }
+    .section h2::after {
+        content: '';
+        display: block;
+        width: 100px;
+        height: 3px;
+        margin: 0.8rem auto 0;
+        background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+        box-shadow: 0 0 10px #00d4ff;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+    .about-grid, .contact-grid {
+        display: grid;
+        gap: 1.5rem;
+    }
+    .about-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+    .card {
+        background: rgba(15, 23, 42, 0.7);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(0, 212, 255, 0.15);
+        border-radius: 12px;
+        padding: 2rem;
+        transition: all 0.35s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    .card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+        transition: left 0.6s ease;
+    }
+    .card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(0, 212, 255, 0.5);
+        box-shadow: 0 10px 40px rgba(0, 212, 255, 0.2);
+    }
+    .card:hover::before {
+        left: 100%;
+    }
+    .card i {
+        font-size: 2.5rem;
+        background: linear-gradient(135deg, #00d4ff, #6366f1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 1rem;
+        display: inline-block;
+    }
+    .card h3 {
+        color: #ffffff;
+        margin-bottom: 0.8rem;
+        font-size: 1.25rem;
+    }
+    .card p {
+        color: #94a3b8;
+        line-height: 1.6;
+        margin: 0;
+    }
+    .contact-info p {
+        font-size: 1.05rem;
+        margin: 0.6rem 0;
+    }
+    .email-link {
+        color: #00d4ff;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    .email-link:hover {
+        text-shadow: 0 0 8px rgba(0, 212, 255, 0.8);
+    }
+    .link-section {
+        padding: 2rem 0 4rem;
+    }
+    .mod-banner {
+        background: rgba(15, 23, 42, 0.7);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(0, 212, 255, 0.15);
+        border-radius: 12px;
+        padding: 2.5rem;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+    .mod-banner:hover {
+        border-color: rgba(0, 212, 255, 0.4);
+        box-shadow: 0 8px 30px rgba(0, 212, 255, 0.15);
+    }
+    .mod-banner h2 {
+        color: #ffffff;
+        margin-top: 0;
+    }
+    .mod-banner p {
+        color: #94a3b8;
+    }
+    footer {
+        text-align: center;
+        padding: 2rem 0;
+        color: #64748b;
+        border-top: 1px solid rgba(0, 212, 255, 0.1);
+    }
+    #cursor-light {
+        position: fixed;
+        width: 350px;
+        height: 350px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(0, 212, 255, 0.12) 0%, transparent 70%);
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        transition: opacity 0.3s ease;
+    }
+    @media (max-width: 768px) {
+        .hero-inner {
+            flex-direction: column;
+        }
+        .intro-text {
+            text-align: center;
+        }
+        .intro-text h1 {
+            font-size: 2rem;
+        }
+        .nav-links {
+            display: none;
+        }
+        .menu-toggle {
+            display: block;
+            color: #00d4ff;
+            font-size: 1.25rem;
+        }
+        .nav-links.active {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            right: 1.5rem;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        .nav-links.active a {
+            margin: 0.5rem 0;
+        }
+    }
+    @media (min-width: 769px) {
+        .menu-toggle {
+            display: none;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+    }
+</style>
 </head>
 <body>
-    <!-- 粒子背景 -->
     <div id="particles-js"></div>
-
-    <!-- 鼠标光效小球 -->
     <div id="cursor-light"></div>
 
-    <!-- 导航栏 -->
     <nav>
         <div class="container nav-container">
             <a href="#" class="logo" id="typing-logo"></a>
@@ -28,7 +388,6 @@
         </div>
     </nav>
 
-    <!-- 首页头部 -->
     <header class="hero">
         <div class="hero-inner">
             <div class="avatar-wrapper">
@@ -45,7 +404,6 @@
         </div>
     </header>
 
-    <!-- 关于我 -->
     <section id="about" class="section">
         <div class="container">
             <h2>关于我</h2>
@@ -69,7 +427,6 @@
         </div>
     </section>
 
-    <!-- 联系我 -->
     <section id="contact" class="section">
         <div class="container">
             <h2>联系我</h2>
@@ -86,13 +443,11 @@
         </div>
     </section>
 
-    <!-- 链接区块 -->
     <div class="container link-section">
         <div class="mod-banner">
             <div class="mod-info">
                 <h2>更多William的界面</h2>
                 <p>你想找的其他都在这里！</p>
-                <a href="Bviedo/Bviedo.html" class="btn glass-btn">打开B站视频综合 →</a>
             </div>
         </div>
     </div>
@@ -103,13 +458,10 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script>
-        // 打字机效果内容
         const text = "William";
         const logo = document.getElementById("typing-logo");
         let index = 0;
-
         function type() {
             if (index <= text.length) {
                 logo.textContent = text.slice(0, index);
@@ -124,16 +476,16 @@
             navLinks.classList.toggle("active");
         }
 
-        // 初始化particles.js
-        particlesJS.load('particles-js', 'particles.json', function() {
-            console.log('particles.js loaded');
-        });
-
-        // 鼠标光效
         const cursorLight = document.getElementById("cursor-light");
         window.addEventListener("mousemove", e => {
             cursorLight.style.top = e.clientY + "px";
             cursorLight.style.left = e.clientX + "px";
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
         });
     </script>
 </body>

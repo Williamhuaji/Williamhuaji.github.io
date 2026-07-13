@@ -1,181 +1,461 @@
 <!DOCTYPE HTML>
-<!--
-	By William
-	QQ2120732689
--->
-<html>
-	<head>
-			<title>TSM生电服务器 | 官方网站</title>
-			<meta charset="utf-8" />
-			<meta name="keywords" content="TSM,TSM服务器,TSMserver,TSM国际服,">
-			<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-			<link rel="stylesheet" href="assets/css/main.css" />
-			<link rel="shortcut icon" href="images/tsm.png"/>
-			<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		</head>
-	<body class="is-preload">
+<html lang="zh-CN">
+<head>
+    <title>TSM生电服务器 | 官方网站</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="TSM,TSM服务器,TSM生电,TSM生存服,我的世界生电服">
+    <meta name="description" content="TSM 是主打生电玩法的 Minecraft 服务器，搭载高性能硬件与跨服QQ互通，提供纯净高质量的生存生电游戏体验。">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="shortcut icon" href="images/tsm.png"/>
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+    <!-- 视觉优化自定义样式 -->
+    <style>
+        /* 全局背景：径向渐变层次，替代纯色 */
+        body {
+            background: radial-gradient(ellipse at top center, #2d3458 0%, #242943 55%, #1c2036 100%);
+            background-attachment: fixed;
+        }
 
-				<!-- Header -->
-					<header id="header" class="alt">
-						<a href="index.html" class="logo"><strong>TSM  Server</strong> <span> 官方网站</span></a>
-						<nav>
-							<a href="#menu">菜单</a>
-						</nav>
-					</header>
+        /* 顶部导航：毛玻璃效果 */
+        #header {
+            background-color: rgba(42, 47, 74, 0.82);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
 
-				<!-- Menu -->
-					<nav id="menu">
-						<ul class="links">
-							<li><a href="index.html">首页</a></li>
-							<li><a href="team.html">TSM team</a></li>
-							<li><a href="function.html">便捷功能</a></li>
-							<li><a href="404.html">最新动态</a></li>
-						</ul>
-						<ul class="actions stacked">
-							<li><a href="https://qm.qq.com/q/hcUK2niDpS" class="button primary fit">加入玩家交流群</a></li>
-						</ul>
-					</nav>
+        /* Banner 渐变遮罩 + 标题光影 */
+        #banner:after {
+            background: linear-gradient(135deg, rgba(36, 41, 67, 0.92) 0%, rgba(36, 41, 67, 0.65) 100%);
+        }
+        #banner h1 {
+            text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+        }
 
-				<!-- Banner -->
-					<section id="banner" class="major">
-						<div class="inner">
-							<span class="image">
-								<img src="images/pic07.jpg" alt="" />
-							</span>
-							<header class="major">
-								<h1>欢迎来到 TSM  Server </h1>
-							</header>
-							<div class="content">
-								<p id="h1"></p>
-								<ul class="actions ">
-									<li><a href="#two" class="button next scrolly">加入TSM生存生电</a></li>
-								</ul>
-							</div>
-						</div>
-						
-					</section>
-					<script>
-					window.onload=function starttime(){
-					        time(h1,'2024/10/1');   
-					        ptimer = setTimeout(starttime,1000); 
-					}
-					    function time(obj,futimg){
-					        var nowtime = new Date().getTime(); 
-					        var futruetime =  new Date(futimg).getTime(); 
-					        var msec = nowtime-futruetime; 
-					        var time = (msec/1000);  
-					        var day = parseInt(time/86400); 
-					        var hour = parseInt(time/3600)-24*day;    
-					        var minute = parseInt(time%3600/60); 
-					        var second = parseInt(time%60); 
-					        obj.innerHTML="TSM已运行"+day+"天"+hour+"小时"+minute+"分"+second+"秒"+""
-					}
-					</script>
+        /* 运行计时器渐变文字 */
+        #run-time {
+            background: linear-gradient(90deg, #9bf1ff, #8ea9e8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+        }
 
-				<!-- Main -->
-					<div id="main">
+        /* 功能卡片：保留放大+光影，恢复原生遮罩淡出清晰效果 */
+        .tiles article {
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.4s ease;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+        .tiles article:hover {
+            transform: scale(1.02);
+            z-index: 2;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35),
+                        inset 0 0 0 1px rgba(155, 241, 255, 0.2);
+        }
+        /* 卡片底色升级为渐变，不改动原生悬停逻辑 */
+        .tiles article:nth-child(6n - 5):before {
+            background: linear-gradient(135deg, #6fc3df 0%, #4a9fbe 100%);
+        }
+        .tiles article:nth-child(6n - 4):before {
+            background: linear-gradient(135deg, #8d82c4 0%, #6b5fa8 100%);
+        }
+        .tiles article:nth-child(6n - 3):before {
+            background: linear-gradient(135deg, #ec8d81 0%, #d96a5c 100%);
+        }
+        .tiles article:nth-child(6n - 2):before {
+            background: linear-gradient(135deg, #e7b788 0%, #d49661 100%);
+        }
+        .tiles article:nth-child(6n - 1):before {
+            background: linear-gradient(135deg, #8ea9e8 0%, #6a8ad4 100%);
+        }
+        .tiles article:nth-child(6n):before {
+            background: linear-gradient(135deg, #87c5a4 0%, #5fa885 100%);
+        }
+        /* 强制保证悬停时遮罩完全淡出，图片恢复清晰 */
+        .tiles article:hover:before {
+            opacity: 0 !important;
+        }
+        /* 悬停时同步淡化暗层，让画面更通透 */
+        .tiles article:hover:after {
+            opacity: 0.5;
+            transition: opacity 0.5s ease;
+        }
 
-						<!-- One -->
-							<section id="one" class="tiles">
-								<article>
-									<span class="image">
-										<img src="images/pic01.png" alt="" />
-									</span>
-									<header class="major">
-										<h3><a href="zx.sjcmc.cn:24781" class="link">卫星云图</a></h3>
-										<p>Server satellite image</p>
-									</header>
-								</article>
-								<article>
-									<span class="image">
-										<img src="images/pic28.png" alt="" />
-									</span>
-									<header class="major">
-										<h3><a href="pic.html" class="link">内服风景</a></h3>
-										<p>Appreciate architecture</p>
-									</header>
-								</article>
-								<article>
-									<span class="image">
-										<img src="images/pic37.png" alt="" />
-									</span>
-									<header class="major">
-										<h3><a href="function.html" class="link">便捷功能</a></h3>
-										<p>Magical balara power</p>
-									</header>
-								</article>
-								<article>
-									<span class="image">
-										<img src="./images/pic07.jpg" alt="" />
-									</span>
-									<header class="major">
-										<h3><a href="list-w-1.html" class="link">肝帝榜单</a></h3>
-										<p>Nisl sed aliquam</p>
-									</header>
-								</article>
-								<article>
-									<span class="image">
-										<img src="images/pic05.jpg" alt="" />
-									</span>
-									<header class="major">
-										<h3><a href="404.html" class="link">问答中心</a></h3>
-										<p>Often ask questions</p>
-									</header>
-								</article>
-								<article>
-									<span class="image">
-										<img src="images/pic02.jpg" alt="" />
-									</span>
-									<header class="major">
-										<h3><a href="team.html" class="link">TSM team</a></h3>
-										<p>TSM server team</p>
-									</header>
-								</article>
-							</section>
+        /* 按钮：悬停上浮 + 发光 + 主按钮渐变 */
+        .button {
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(155, 241, 255, 0.18),
+                        inset 0 0 0 2px #9bf1ff;
+        }
+        .button.primary {
+            background: linear-gradient(90deg, #ffffff 0%, #e8f8ff 100%);
+        }
+        .button.primary:hover {
+            background: linear-gradient(90deg, #9bf1ff 0%, #8ea9e8 100%);
+            color: #242943 !important;
+            box-shadow: 0 8px 25px rgba(155, 241, 255, 0.32);
+        }
+        .button.next:hover:after {
+            transform: translateX(4px);
+        }
 
-						<!-- Two -->
-							<section id="two">
-								<div class="inner">
-									<header class="major">
-										<h2>服务器特色</h2>
-									</header>
-									<ul class="alt">
-										<li>搭载跨服聊天，分服之间与qq之间消息互通</li>
-										<li>核心处理器AMD R9 9950X 5v，主频可达5.7Ghz</li>
-										<li>加载多种生电便利工具</li>
-										<li>每逢过节在服开展小游戏活动</li>
-										<li>严格的白名单审核，提供高质量玩家氛围</li>
-									</ul>
-									<ul class="actions">
-										<li><a href="jiao.html" class="button next">加入TSM生存生电</a></li>
-									</ul>
-								</div>
-							</section>
+        /* 特色列表：悬停微动 + 左侧光点 */
+        ul.alt li {
+            transition: all 0.3s ease;
+            padding-left: 1em;
+            position: relative;
+            border-top-color: rgba(212, 212, 255, 0.08);
+        }
+        ul.alt li:hover {
+            padding-left: 1.6em;
+            background-color: rgba(155, 241, 255, 0.03);
+        }
+        ul.alt li:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: #9bf1ff;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        ul.alt li:hover:before {
+            opacity: 1;
+        }
 
-					</div>
+        /* 侧边菜单：毛玻璃背景 + 链接悬停动效 */
+        #menu {
+            background: rgba(36, 41, 67, 0.78);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        #menu ul.links > li > a:not(.button) {
+            transition: all 0.3s ease;
+            border-top-color: rgba(212, 212, 255, 0.08);
+        }
+        #menu ul.links > li > a:not(.button):hover {
+            color: #9bf1ff;
+            letter-spacing: 0.3em;
+            background-color: rgba(155, 241, 255, 0.03);
+        }
 
-				<!-- Contact -->
-					<footer id="footer">
-						<div class="inner">
-							<ul class="copyright">
-								<li>由<strong>William垃圾电脑</strong>强力驱动</li><li>All Rights Reserved</li><li><a href="https://space.bilibili.com/1756479830">bilibili:William啊_</a></li><li>Design: William</li><li>&copy; TSM Server 2025</li><!--   TSM服务器管理组-->
-							</ul>
-						</div>
-					</footer>
+        /* 主内容区：半透明承接背景渐变 */
+        #main {
+            background: rgba(42, 47, 74, 0.7);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
 
-			</div>
+        /* 页脚：弱化分隔线 + 底部暗角 */
+        #footer {
+            border-top: 1px solid rgba(212, 212, 255, 0.08);
+            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.12));
+        }
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+        /* 滚动条美化：适配深色主题 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #242943;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(155, 241, 255, 0.2);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(155, 241, 255, 0.4);
+        }
 
-	</body>
+        /* 鼠标粒子拖尾画布 */
+        #particle-trail {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body class="is-preload">
+
+<!-- 鼠标粒子拖尾画布 -->
+<canvas id="particle-trail"></canvas>
+
+<!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header" class="alt">
+            <a href="index.html" class="logo"><strong>TSM Server</strong> <span>官方网站</span></a>
+            <nav>
+                <a href="#menu">菜单</a>
+            </nav>
+        </header>
+
+        <!-- Menu -->
+        <nav id="menu">
+            <ul class="links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="team.html">TSM 管理团队</a></li>
+                <li><a href="function.html">便捷功能</a></li>
+                <li><a href="404.html">最新动态</a></li>
+            </ul>
+            <ul class="actions stacked">
+                <li><a href="https://qm.qq.com/q/hcUK2niDpS" target="_blank" rel="noopener noreferrer" class="button primary fit">加入玩家交流群</a></li>
+            </ul>
+        </nav>
+
+        <!-- Banner -->
+        <section id="banner" class="major">
+            <div class="inner">
+                <span class="image">
+                    <img src="images/pic07.jpg" alt="TSM 服务器首页横幅" />
+                </span>
+                <header class="major">
+                    <h1>欢迎来到 TSM Server</h1>
+                </header>
+                <div class="content">
+                    <p id="run-time">正在加载运行时长...</p>
+                    <ul class="actions">
+                        <li><a href="#two" class="button next scrolly">加入 TSM 生存生电</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 运行时长脚本 -->
+        <script>
+            (function() {
+                const startTime = '2024/10/1';
+                const timerEl = document.getElementById('run-time');
+                let timer = null;
+
+                function padZero(num) {
+                    return num < 10 ? '0' + num : num;
+                }
+
+                function updateTime() {
+                    const now = new Date().getTime();
+                    const target = new Date(startTime).getTime();
+                    const diff = now - target;
+
+                    if (diff < 0) {
+                        timerEl.innerHTML = '服务器即将开启，敬请期待';
+                        return;
+                    }
+
+                    const totalSeconds = Math.floor(diff / 1000);
+                    const day = Math.floor(totalSeconds / 86400);
+                    const hour = Math.floor((totalSeconds % 86400) / 3600);
+                    const minute = Math.floor((totalSeconds % 3600) / 60);
+                    const second = totalSeconds % 60;
+
+                    timerEl.innerHTML = `TSM 已稳定运行 ${day} 天 ${padZero(hour)} 小时 ${padZero(minute)} 分 ${padZero(second)} 秒`;
+                }
+
+                window.addEventListener('load', function() {
+                    updateTime();
+                    timer = setInterval(updateTime, 1000);
+                });
+
+                window.addEventListener('beforeunload', function() {
+                    if (timer) clearInterval(timer);
+                });
+            })();
+        </script>
+
+        <!-- Main -->
+        <div id="main">
+
+            <!-- One 功能卡片区 -->
+            <section id="one" class="tiles">
+                <article>
+                    <span class="image">
+                        <img src="images/pic01.png" alt="服务器卫星云图" />
+                    </span>
+                    <header class="major">
+                        <h3><a href="http://zx.sjcmc.cn:24781" target="_blank" rel="noopener noreferrer" class="link">卫星云图</a></h3>
+                        <p>Server Satellite Map</p>
+                    </header>
+                </article>
+                <article>
+                    <span class="image">
+                        <img src="images/pic28.png" alt="服务器内建筑风景" />
+                    </span>
+                    <header class="major">
+                        <h3><a href="pic.html" class="link">内服风景</a></h3>
+                        <p>In-game Architecture</p>
+                    </header>
+                </article>
+                <article>
+                    <span class="image">
+                        <img src="images/pic37.png" alt="生电便捷功能" />
+                    </span>
+                    <header class="major">
+                        <h3><a href="function.html" class="link">便捷功能</a></h3>
+                        <p>QoL Utility Features</p>
+                    </header>
+                </article>
+                <article>
+                    <span class="image">
+                        <img src="./images/pic07.jpg" alt="玩家活跃度榜单" />
+                    </span>
+                    <header class="major">
+                        <h3><a href="list-w-1.html" class="link">肝帝榜单</a></h3>
+                        <p>Playtime Leaderboard</p>
+                    </header>
+                </article>
+                <article>
+                    <span class="image">
+                        <img src="images/pic05.jpg" alt="常见问题解答" />
+                    </span>
+                    <header class="major">
+                        <h3><a href="404.html" class="link">问答中心</a></h3>
+                        <p>FAQ & Help Center</p>
+                    </header>
+                </article>
+                <article>
+                    <span class="image">
+                        <img src="images/pic02.jpg" alt="TSM 服务器团队" />
+                    </span>
+                    <header class="major">
+                        <h3><a href="team.html" class="link">TSM Team</a></h3>
+                        <p>Server Operation Team</p>
+                    </header>
+                </article>
+            </section>
+
+            <!-- Two 服务器特色 -->
+            <section id="two">
+                <div class="inner">
+                    <header class="major">
+                        <h2>服务器特色</h2>
+                    </header>
+                    <ul class="alt">
+                        <li>搭载跨服聊天系统，分服之间与 QQ 群消息实时互通</li>
+                        <li>核心处理器 AMD Ryzen 9 9950X，最高主频可达 5.7GHz</li>
+                        <li>内置多种生电便利工具，优化红石与生存体验</li>
+                        <li>每逢节日在服务器内开展小游戏与福利活动</li>
+                        <li>严格白名单审核制度，打造高质量玩家社群氛围</li>
+                    </ul>
+                    <ul class="actions">
+                        <li><a href="jiao.html" class="button next">加入 TSM 生存生电</a></li>
+                    </ul>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div class="inner">
+                <ul class="copyright">
+                    <li>由 <strong>William</strong> 技术驱动</li>
+                    <li>All Rights Reserved</li>
+                    <li><a href="https://space.bilibili.com/1756479830" target="_blank" rel="noopener noreferrer">Bilibili: William啊_</a></li>
+                    <li>Design: HTML5 UP | Custom by William</li>
+                    <li>&copy; TSM Server 2025</li>
+                </ul>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <!-- 微量鼠标粒子拖尾脚本 -->
+    <script>
+        (function() {
+            const canvas = document.getElementById('particle-trail');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            const maxParticles = 15; // 最大粒子数，数值越高效果越明显
+
+            // 自适应画布尺寸
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            // 粒子类
+            class Particle {
+                constructor(x, y) {
+                    this.x = x;
+                    this.y = y;
+                    this.vx = (Math.random() - 0.5) * 0.8;
+                    this.vy = (Math.random() - 0.5) * 0.8;
+                    this.size = Math.random() * 2 + 1;
+                    this.opacity = 0.25 + Math.random() * 0.15;
+                    this.life = 1;
+                    this.decay = 0.015 + Math.random() * 0.01;
+                }
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    this.life -= this.decay;
+                    this.opacity = this.life * 0.3;
+                    this.size *= 0.98;
+                }
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(155, 241, 255, ${this.opacity})`;
+                    ctx.fill();
+                }
+            }
+
+            // 鼠标移动生成粒子（节流控制数量）
+            let lastMoveTime = 0;
+            window.addEventListener('mousemove', function(e) {
+                const now = Date.now();
+                if (now - lastMoveTime < 30) return;
+                lastMoveTime = now;
+                if (particles.length < maxParticles) {
+                    particles.push(new Particle(e.clientX, e.clientY));
+                }
+            });
+
+            // 动画循环
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let i = particles.length - 1; i >= 0; i--) {
+                    const p = particles[i];
+                    p.update();
+                    p.draw();
+                    if (p.life <= 0) particles.splice(i, 1);
+                }
+                requestAnimationFrame(animate);
+            }
+            animate();
+        })();
+    </script>
+
+</body>
 </html>
